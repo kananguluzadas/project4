@@ -1,3 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+ }
+
 .App {
   text-align: center;
 }
@@ -35,4 +46,158 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Tab Container */
+.Tabs {
+  width: 80%;
+  height: auto;
+  min-height: 400px;
+  background: #053742;
+  margin: 3.5rem auto 1.5rem;
+  padding: 2rem 1rem;
+  color: #E8F0F2;
+  border-radius: 2rem;
+}
+ 
+.react-tabs {
+  -webkit-tap-highlight-color: transparent;
+}
+ 
+.react-tabs__tab-list {
+  width: 60%;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #39A2DB;
+  border-radius: 2rem;
+  padding-left: 0px;
+}
+ 
+.react-tabs__tab {
+  width: 50%;
+  padding: 1rem;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.7s;
+}
+ 
+.react-tabs__tab--selected {
+  background: #39A2DB;
+}
+ 
+.react-tabs__tab--disabled {
+  color: GrayText;
+  cursor: default;
+}
+ 
+.react-tabs__tab:hover {
+  background: rgba(50, 224, 196, 0.15);
+}
+ 
+.react-tabs__tab:first-child {
+  border-bottom-left-radius: 2rem;
+  border-top-left-radius: 2rem;
+}
+ 
+.react-tabs__tab:last-child {
+  border-bottom-right-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+ 
+.react-tabs__tab-panel {
+  display: none;
+}
+ 
+.react-tabs__tab-panel--selected {
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+}
+/* ss */
+/* .active-tabs{
+  background-color: white;
+  border-bottom: 1px solid transparent;
+}
+.active-tabs::before{
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 5px;
+  background-color: rgb(88, 147, 241);
+}
+
+.button{
+  border: none;
+}
+
+.content-tabs{
+  flex-grow: 1;
+}
+
+.content h2{
+  padding: 0 0 5px 0;
+}
+
+.content hr{
+  width:100%;
+  height: 2px;
+  background-color: #222;
+  margin-bottom: 5px;
+}
+
+.content p{
+  width: 100%;
+  height: 100%;
+}
+
+.active-content{
+  display: block;
+} */
+
+.bloc-tabs{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.tabs{
+  background-color: #39A2DB;
+  display: inline;
+  text-align: center;
+  color: white;
+}
+
+.tabs:hover{
+  cursor: pointer;
+  color: #053742;
+  background-color: aliceblue
+}
+
+.content{
+  display: none;
+}
+
+.show-content{
+  display: block;
+}
+
+.ss{
+  display: none;;
+}
+
+.active-ss{
+  display: block;
+
+}
+
+.dd{
+ display: flex;
+ justify-content: space-between; 
 }
