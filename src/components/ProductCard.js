@@ -4,58 +4,64 @@ import { CartContext } from "./CartProducts";
 const ProductCard = ({
   id,
   productName,
-  imageUrl,
   price,
-  showDeleteButton = false,
-  showAddButton = true,
+  description,
+  imageUrl,
   quantity,
-  increaseButton = false,
-  decreaseButton = false
+  showAddButton = true,
+  showDeleteButton = false,
+  addQtyBtn = false,
+  delQtyBtn = false,
 }) => {
+  const { addToCart, deleteCart, totalPrice, setTotalPrice, setTotalQuantity } = useContext(CartContext);
+  const [qty, setQty] = useState(quantity || 1);
 
-
-  const { addToCart, deleteFromCart, setTotalPrice, setTotalQuantity, totalQuantity} = useContext(CartContext);
-
-  const [qty, setQty] = useState(quantity || 1)
-
-  const handleAddQty = (currentPrice, currentQuantity) => {
-    setQty(prevQty => prevQty + 1);
-    setTotalPrice(prev => prev + currentPrice);
-    
+  const handleAddToCart = () => {
+    addToCart(id, productName, price, description, imageUrl, qty);
   };
 
-  const handleDelQty = (currentPrice, currentQuantity) => {
+  const handleDeleteCart = () => {
+    deleteCart(id);
+  };
+
+  const handleAddQty = (currentPrice) => {
+    setQty((prevQty) => prevQty + 1);
+      setTotalQuantity(pre => pre + 1)
+      setTotalPrice(prev => prev + currentPrice)
+  };
+
+  const handleDelQty = (currentPrice) => {
     if (qty === 1) {
       alert("Mehsul sayi 1 den asagi olmaz");
     } else {
-      setQty(prevQty => prevQty - 1);
+      setQty((prevQty) => prevQty - 1);
       setTotalPrice(prev => prev - currentPrice);
-     
+      setTotalQuantity(pre => pre - 1)
     }
   };
 
   return (
-    <div className="flex flex-col justify-center align-middle">
-      <div className="m-auto">
-        <img src={imageUrl} alt="img"></img>
+    <>
+      <div className="product-card">
+      <div className="product-card-img">
+        <img src={imageUrl} alt="product" />
       </div>
-      <div>
+      <div className="product-card-description">
         <p>{productName}</p>
-        <span>{price}</span>
-        {quantity && qty && <p>Quantity: {totalQuantity}</p>}
+        <p>{description}</p>
+        <span>Price {price}</span>
+        {qty && <p>Quantity {qty}</p>}
       </div>
-
-      {showAddButton && (
-        <button onClick={() => addToCart(id, price, productName, imageUrl, quantity)}>
-          Add to cart
-        </button>
-      )}
+      {showAddButton && <button onClick={handleAddToCart}>Add Cart</button>}
       {showDeleteButton && (
-        <button onClick={() => deleteFromCart(id)}>Delete from cart</button>
+        <button onClick={handleDeleteCart}>Delete Cart</button>
       )}
-      {increaseButton && <button onClick={() => handleAddQty(price)}>+</button>}
-      {decreaseButton && <button onClick={() => handleDelQty(price)}>-</button>}
+      {addQtyBtn && <button onClick={() => handleAddQty(price, qty)}>+</button>}
+      {delQtyBtn && <button onClick={() => handleDelQty(price, qty)}>-</button>}
     </div>
+    
+    </>
+    
   );
 };
 

@@ -62,54 +62,89 @@
 // export default ShoppingCart;
 
 
-import React, { useState, useEffect, useContext } from "react";
-import { CartContext } from "./CartProducts";
+// import React, { useState, useEffect, useContext } from "react";
+// import { CartContext } from "./CartProducts";
 // import "../styles/cart.css";
 
 
+// const ShoppingCart = () => {
+//   const [price, setPrice] = useState(0);
+//   const { cart, setCart, handleChange } = useContext(CartContext)
+//   const handleRemove = (id) => {
+//     const arr = cart.filter((item) => item.id !== id);
+//     setCart(arr);
+//   };
+
+//   const handlePrice = () => {
+//     let ans = 0;
+
+    // Calculate the total price, ensuring item.amount and item.price are valid numbers
+  //   cart.forEach((item) => {
+  //     const amount = Number(item.amount); // Convert to a number
+  //     const itemPrice = Number(item.price); // Convert to a number
+
+  //     if (!isNaN(amount) && !isNaN(itemPrice)) {
+  //       ans += amount * itemPrice;
+  //     }
+  //   });
+
+  //   setPrice(ans);
+  // };
+
+//   
+import React, { useContext, useEffect } from "react";
+import ProductCard from "../components/ProductCard";
+import '../App.css'
+import { CartContext } from "./CartProducts";
 const ShoppingCart = () => {
-  const [price, setPrice] = useState(0);
-  const { cart, setCart, handleChange } = useContext(CartContext)
-  const handleRemove = (id) => {
-    const arr = cart.filter((item) => item.id !== id);
-    setCart(arr);
-    handlePrice();
-  };
-
-  const handlePrice = () => {
-    let ans = 0;
-    cart.map((item) => (ans += item.amount * item.price));
-    setPrice(ans);
-  };
-
+  const { cart, totalPrice, setTotalPrice, totalQuantity, setTotalQuantity } = useContext(CartContext);
   useEffect(() => {
-    handlePrice();
-  });
+    const sumAllProducts = cart.map((item) => {
+      return item.quantity * item.price;
+    });
+    const sumPrice = sumAllProducts.reduce(
+      (prev, current) => prev + current,
+      0
+    );
+    const allQuantity = cart.map((item) => {
+      return item.quantity;
+    });
+    const sumQuantity = allQuantity.reduce(
+      (prev, current) => prev + current,
+      0
+    );
 
+    setTotalPrice(sumPrice);
+    setTotalQuantity(sumQuantity);
+  }, [cart]);
   return (
-    <article>
-      {cart.map((item) => (
-        <div className="cart_box" key={item.id}>
-          <div className="cart_img">
-            <img className="w-200 m-auto" src={item.image} alt="" />
-            <p>{item.title}</p>
-          </div>
-          <div>
-            <button onClick={() => handleChange(item, 1)}>+</button>
-            <button>{item.amount}</button>
-            <button onClick={() => handleChange(item, -1)}>-</button>
-          </div>
-          <div>
-            <span>{item.price}</span>
-            <button className="block m-auto" onClick={() => handleRemove(item.id)}>Remove</button>
-          </div>
-        </div>
-      ))}
-      <div className="total flex flex-col">
-        <span>Total Price of your Cart</span>
-        <span>$ {price}</span>
-      </div>
-    </article>
+    <>
+      <div className="home">
+      {cart.length === 0 ? (
+        <h1>You have no products</h1>
+      ) : (
+        cart.map((item) => {
+          return (
+            <ProductCard
+              key={item.id}
+              id={item.id}
+              productName={item.productName}
+              price={item.price}
+              description={item.description}
+              imageUrl={item.imageUrl}
+              quantity={item.quantity}
+              showAddButton={false}
+              showDeleteButton={true}
+              addQtyBtn={true}
+              delQtyBtn={true}
+            />
+          );
+        })
+      )}
+    </div>
+    <p className="ttr">Cart {totalQuantity} Summary AZN{totalPrice}</p>
+    </>
+    
   );
 };
 

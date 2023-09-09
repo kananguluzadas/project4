@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Cards from '../components/Cards';
-
+import ProductCard from '../components/ProductCard';
 const Man = () => {
   const [cart,setCart] = useState([])
   const [data, setData] = useState([]);
@@ -15,19 +15,21 @@ const Man = () => {
       console.log("this is catch");
     })
   })
-
-  const handleClick = (product) => {
-    setCart([...cart, product])
-    console.log(cart);
-  }
   return (
-    <div>
-      <div className='px-10 grid xl:grid-cols-4 gap-80 items-center'>
-        {data.map((product) => (
-          <Cards key={product.id} product={product} handleClick={handleClick}/>
-          
-        ))}
-      </div>
+    <div className="home">
+      {data.map((item) => {
+        return (
+          <ProductCard
+            key={item.id}
+            id={item.id}
+            productName={item.title}
+            price={item.price}
+            description={item.description}
+            imageUrl={item.image}
+            quantity={item.quantity}
+          />
+        );
+      })}
     </div>
   )
 }

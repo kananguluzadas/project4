@@ -4,7 +4,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
 
-    // const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([])
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [pros] = useState([
@@ -180,26 +180,55 @@ export const CartProvider = ({children}) => {
     //     setCart(filteredData)
     // }
 
-    const [show, setShow] = useState(true);
-    const [cart, setCart] = useState([]);
+    // const [show, setShow] = useState(true);
+    // const [cart, setCart] = useState([]);
   
-    const handleClick = (item) => {
-      if (cart.indexOf(item) !== -1) return;
-      setCart([...cart, item]);
-    };
+    // const handleClick = (item) => {
+    //   if (cart.indexOf(item) !== -1) return;
+    //   setCart([...cart, item]);
+    // };
   
-    const handleChange = (item, d) => {
-      const ind = cart.indexOf(item);
-      const arr = cart;
-      arr[ind].amount += d;
+    // const handleChange = (item, d) => {
+    //   const ind = cart.indexOf(item);
+    //   const arr = cart;
+    //   arr[ind].amount += d;
   
-      if (arr[ind].amount === 0) arr[ind].amount = 1;
-      setCart([...arr]);
-    };
+    //   if (arr[ind].amount === 0) arr[ind].amount = 1;
+    //   setCart([...arr]);
+    // };
   
-   
+    const addToCart = (
+        id,
+        productName,
+        price,
+        description,
+        imageUrl,
+        quantity
+      ) => {
+        const existingId = cart.find((item) => item.id == id);
+        if (existingId) {
+          const getNonExisting = cart.filter((item) => item.id !== existingId.id);
+          setCart([
+            ...getNonExisting,
+            { ...existingId, quantity: existingId.quantity + 1 },
+          ]);
+        } else {
+          setCart([
+            ...cart,
+            { id, productName, price, description, imageUrl, quantity: 1 },
+          ]);
+        }
+      };
+    
+      const deleteCart = (id) => {
+        const filteredData = cart.filter((item) => item.id !== id);
+        setCart(filteredData);
+      };
+    
+    
+      const value = { cart, addToCart, deleteCart };
 
     return (
-        <CartContext.Provider value={{pros, handleChange, handleClick, show, setShow, cart, setCart}}>{children}</CartContext.Provider>
+        <CartContext.Provider value={{ products, addToCart, cart, deleteCart, totalQuantity, setTotalQuantity, setTotalPrice, totalPrice}}>{children}</CartContext.Provider>
     )
 }
