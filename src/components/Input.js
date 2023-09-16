@@ -1,10 +1,15 @@
 import React from "react";
 import "../assets/styles/Header.scss";
-import { type } from "@testing-library/user-event/dist/type";
+// import { type } from "@testing-library/user-event/dist/type";
 
-const Input = ({ className, type, placeholder, onChange, onClick, value }) => {
+
+
+
+const Input = ({ className, type, placeholder, onChange, onClick, value, setResults }) => {
   return (
-    <input
+    <div>
+      
+      <input
       className={className}
       type={type}
       placeholder={placeholder}
@@ -12,6 +17,8 @@ const Input = ({ className, type, placeholder, onChange, onClick, value }) => {
       onClick={onClick}
       value={value}
     />
+    </div>
+   
   );
 };
 

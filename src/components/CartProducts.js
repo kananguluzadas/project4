@@ -158,44 +158,6 @@ export const CartProvider = ({children}) => {
         }
     ]
     
-
-    // const addToCart = (id, price, productName, imageUrl) => {
-    //     const existingId = cart.find(item => item.id == id)
-
-    //     if(existingId){
-    //         const getUniqueProducts = cart.filter(item => {
-    //             return item.id !== existingId?.id
-    //         })
-    //         setCart([...getUniqueProducts, {...existingId, quantity: existingId?.quantity + 1}])
-    //     } else {
-    //         setCart([...cart, {id, productName, price, imageUrl, quantity: 1}])
-    //     }
-        
-    // }
-
-    // const deleteFromCart = (id) => {
-    //     const filteredData = cart.filter(item => {
-    //         return item.id !== id
-    //     })
-    //     setCart(filteredData)
-    // }
-
-    // const [show, setShow] = useState(true);
-    // const [cart, setCart] = useState([]);
-  
-    // const handleClick = (item) => {
-    //   if (cart.indexOf(item) !== -1) return;
-    //   setCart([...cart, item]);
-    // };
-  
-    // const handleChange = (item, d) => {
-    //   const ind = cart.indexOf(item);
-    //   const arr = cart;
-    //   arr[ind].amount += d;
-  
-    //   if (arr[ind].amount === 0) arr[ind].amount = 1;
-    //   setCart([...arr]);
-    // };
   
     const addToCart = (
         id,

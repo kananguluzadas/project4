@@ -45,12 +45,6 @@ const NavLinks = () => {
             {link.submenu && (
               <div>
                 <div className="absolute left-0 top-20 hidden group-hover:md:block hover:md:block">
-                  {/* <div className="py-3">
-                    <div
-                      className="w-4 h-4 left-3 absolute 
-                    mt-1 bg-white rotate-45"
-                    ></div>
-                  </div> */}
                   <div className="bg-white shadow-2xl w-60vw p-5 z-10 grid grid-cols-3 gap-100 left-0 top-10 absolute">
                     {link.sublinks.map((mysublinks, index) => (
                       <div key={index + 1} className="ml-0">

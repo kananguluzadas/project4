@@ -17,31 +17,13 @@ import collect3 from "../assets/images/collect3.png";
 import collect4 from "../assets/images/collect4.png";
 
 import {logos, firstSwiper } from "../components/MyLinks";
-import ProductCard from "../components/ProductCard";
-import { CartContext } from "../components/CartProducts";
 
-// import Swiper from 'swiper'
 
 const Home = () => {
   const slidesPerView = 4;
 
-  const { pros } = useContext(CartContext);
-
   return (
     <div>
-      {/* <div className="flex">
-        {pros.map((item) => {
-          return (
-            <ProductCard
-              key={item.id}
-              id={item.id}
-              productName={item.productName}
-              price={item.price}
-              imageUrl={item.imageUrl}
-            />
-          );
-        })}
-      </div> */}
 
       <Slider children={firstSwiper} />
       <div className="flex flex-col gap-100 pt-80px px-20px">
@@ -72,10 +54,12 @@ const Home = () => {
       </div>
 
       <TabElements />
-      <div className="relative">
-        <SectionName className="text-4xl font-bold after:content-[''] after:w-50 after:h-5 after:bg-orange after:block after:absolute phone:after:right-[20%]  sm:after:right-[25%] md:after:right-[34%] after:bottom-[0px] xl:after:right-[38%] uppercase leading-9 " children="BRENDLƏR" />
+      <div className="relative pt-12">
+        <SectionName className=" text-4xl font-bold after:content-[''] after:w-50 after:h-5 after:bg-orange after:block after:absolute phone:after:right-[20%]  sm:after:right-[25%] md:after:right-[34%] after:bottom-[0px] xl:after:right-[38%] uppercase leading-9 " children="BRENDLƏR" />
       </div>
-      <Slider children={logos} slidesPerView={slidesPerView} />
+      <div className="pt-10">
+        <Slider className="" children={logos} slidesPerView={slidesPerView} />
+      </div>
     </div>
   );
 };
